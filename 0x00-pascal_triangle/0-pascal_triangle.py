@@ -3,11 +3,11 @@
 Pascal's Triangle Generator
 """
 
+
 def pascal_triangle(n):
     """
-    Generates a Pascal's triangle with 'n' rows.
-    Returns a list of lists containing
-    the values for each row.
+    Generates Pascal's triangle with 'n' rows.
+    Returns a list of lists containing values of each row.
     """
     triangle = []
     if n > 0:
