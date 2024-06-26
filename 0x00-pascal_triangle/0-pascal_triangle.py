@@ -1,22 +1,20 @@
 #!/usr/bin/python3
 """
-The Pascal's Triangle
+Pascal's Triangle Generator
 """
 
 def pascal_triangle(n):
-    if n <= 0:
-        return []
-
-    triangle = [[1]]
-
-    for i in range(1, n):
-        prev_row = triangle[-1]
-        new_row = [1]
-
-        for j in range(1, i):
-            new_row.append(prev_row[j-1] + prev_row[j])
-
-        new_row.append(1)
-        triangle.append(new_row)
-
+    """
+    Generates a Pascal's triangle with 'n' rows.
+    Returns a list of lists containing the values for each row.
+    """
+    triangle = []
+    if n > 0:
+        for row in range(n):
+            current_row = []
+            value = 1
+            for position in range(row + 1):
+                current_row.append(value)
+                value = value * (row - position) // (position + 1)
+            triangle.append(current_row)
     return triangle
