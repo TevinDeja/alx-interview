@@ -6,7 +6,8 @@ Pascal's Triangle Generator
 def pascal_triangle(n):
     """
     Generates a Pascal's triangle with 'n' rows.
-    Returns a list of lists containing the values for each row.
+    Returns a list of lists containing
+    the values for each row.
     """
     triangle = []
     if n > 0:
