@@ -5,8 +5,8 @@ Calculating minimum operations
 
 
 def minOperations(n):
-    """Calculates fewest no of operations needed
-    to result in exactly n H characters
+    """
+    Calculates fewest no of operations needed
     """
     if n < 2:
         return 0
