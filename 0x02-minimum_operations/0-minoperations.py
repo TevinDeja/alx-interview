@@ -6,6 +6,7 @@ def minOperations(n):
     """
     Calculates fewest no of operations needed
     """
+
     if n < 2:
         return 0
     
