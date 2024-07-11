@@ -6,8 +6,6 @@ def minOperations(n):
     """
     Calculates fewest no of operations needed
     """
-
-
     if n < 2:
         return 0
     
@@ -19,5 +17,4 @@ def minOperations(n):
             operations += divisor
             n //= divisor
         divisor += 1
-    
     return operations
