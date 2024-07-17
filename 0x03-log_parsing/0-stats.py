@@ -1,42 +1,28 @@
 #!/usr/bin/python3
 import sys
-import re
-from collections import defaultdict
+import random
+from datetime import datetime
+import time
 
-def print_stats(total_size, status_codes):
-    print(f"File size: {total_size}")
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print(f"{code}: {status_codes[code]}")
+def generate_ip():
+    return ".".join(str(random.randint(0, 255)) for _ in range(4))
 
-def parse_line(line):
-    pattern = r'(\d+\.\d+\.\d+\.\d+) - \[(.*?)\] "GET /projects/260 HTTP/1.1" (\d+) (\d+)'
-    match = re.match(pattern, line)
-    if match:
-        return int(match.group(3)), int(match.group(4))
-    return None, None
+def generate_log_entry():
+    ip = generate_ip()
+    timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S.%f]")
+    status = random.choice([200, 301, 400, 401, 403, 404, 405, 500])
+    file_size = random.randint(100, 5000)
+    return f"{ip} - {timestamp} \"GET /projects/260 HTTP/1.1\" {status} {file_size}\n"
 
 def main():
-    total_size = 0
-    line_count = 0
-    status_codes = defaultdict(int)
-    valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
-
     try:
-        for line in sys.stdin:
-            status_code, file_size = parse_line(line.strip())
-            if status_code is not None and file_size is not None:
-                total_size += file_size
-                if status_code in valid_codes:
-                    status_codes[status_code] += 1
-                line_count += 1
-
-                if line_count % 10 == 0:
-                    print_stats(total_size, status_codes)
-
+        for _ in range(10000):
+            log_entry = generate_log_entry()
+            sys.stdout.write(log_entry)
+            sys.stdout.flush()
+            time.sleep(random.uniform(0.1, 0.3))
     except KeyboardInterrupt:
-        print_stats(total_size, status_codes)
-        raise
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
