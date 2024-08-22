@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module for makeChange function."""
+"""
+Module for makeChange function
+"""
 
 
 def makeChange(coins, total):
